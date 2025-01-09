@@ -1,6 +1,11 @@
-﻿namespace Default{
-    class DefaultCustomer
+﻿using DiscountSystem;
+namespace Default
+{
+    class DefaultCustomer : Discount<double>
     {
-        public double GetDiscount(double purchaseAmount)=> purchaseAmount;
+        public override double GetDiscount() {
+            Console.WriteLine("Enter the purchase amount");
+            return Convert.ToDouble(Console.ReadLine()); 
+        }
     }
 }

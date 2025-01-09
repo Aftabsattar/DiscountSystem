@@ -1,12 +1,13 @@
-﻿namespace premium
+﻿using DiscountSystem;
+namespace premium
 {
-    class PremiumCustomer
+    class PremiumCustomer : Discount<double>
     {
-        public double GetDiscount(double purchaseAmount)
+        public override double GetDiscount()
         {
-            double DicountAmount = purchaseAmount * 20 / 100;
-            double totalAmountToPay = purchaseAmount - DicountAmount;
-            return totalAmountToPay;
+            Console.WriteLine("Enter the purchase amount");
+            double purchaseAmount = Convert.ToDouble(Console.ReadLine());
+            return purchaseAmount - purchaseAmount * 20 / 100;
         }
     }
 }

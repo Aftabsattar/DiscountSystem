@@ -1,12 +1,13 @@
-﻿namespace employee
+﻿using DiscountSystem;
+namespace employee
 {
-    class Employee
+    class Employee : Discount<double>
     {
-        public double GetDiscount(double purchaseAmount)
+        public override double GetDiscount()
         {
-            double DicountAmount = purchaseAmount * 30 / 100;
-            double totalAmountToPay = purchaseAmount - DicountAmount;
-            return totalAmountToPay;
+            Console.WriteLine("Enter the purchase amount");
+            double purchaseAmount = Convert.ToDouble(Console.ReadLine());
+            return purchaseAmount - purchaseAmount * 30 / 100;
         }
     }
 }

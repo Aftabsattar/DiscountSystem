@@ -1,13 +1,14 @@
 ﻿
+using DiscountSystem;
 namespace regular
 {
-    class RegularCustomer
+    class RegularCustomer : Discount<double>
     {
-        public double GetDiscount(double purchaseAmount)
+        public override double GetDiscount()
         {
-            double DicountAmount = purchaseAmount * 10/100;
-            double totalAmountToPay = purchaseAmount - DicountAmount;
-            return totalAmountToPay;
+            Console.WriteLine("Enter the purchase amount");
+            double purchaseAmount = Convert.ToDouble(Console.ReadLine());
+            return purchaseAmount - purchaseAmount * 10 / 100;
         }
     }
 
