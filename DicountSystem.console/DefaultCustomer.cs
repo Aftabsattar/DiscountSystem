@@ -8,4 +8,4 @@ namespace Default
             return Convert.ToDouble(Console.ReadLine()); 
         }
     }
-}
+}//derived

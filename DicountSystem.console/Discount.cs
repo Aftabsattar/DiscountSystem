@@ -6,3 +6,4 @@ namespace DiscountSystem
         public abstract T GetDiscount();
     }
 }
+//base class

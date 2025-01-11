@@ -4,35 +4,28 @@ using employee;
 using Default;
 using DiscountSystem;
 Console.WriteLine("select The type of Customer");
-Console.WriteLine("1. Regular");
-Console.WriteLine("2. Premium");
-Console.WriteLine("3. Employee");
-Console.WriteLine("4. Walking");
-Discount<double>[] discount = new Discount<double>[4];
-string? Type = Console.ReadLine();
-switch (Type)
+Console.WriteLine(" Regular");
+Console.WriteLine(" Premium");
+Console.WriteLine(" Employee");
+Console.WriteLine(" Walking");
+List<Discount<double>> list = new List<Discount<double>>()
 {
-    case "1":
-        discount[0] = new RegularCustomer();
-        Console.Write($"Total amount to pay:{discount[0].GetDiscount()}");
-        break;
-    case "2":
-        discount[1] = new PremiumCustomer();
-        Console.Write($"Total amount to pay:{discount[1].GetDiscount()}");
-        break;
-    case "3":
-        discount[2] = new Employee();
-        Console.Write($"Total amount to pay:{discount[2].GetDiscount()}");
-        break;
-    case "4":
-        discount[3] = new DefaultCustomer(); 
-        Console.Write($"Total amount to pay:{discount[3].GetDiscount()}");
-        break;
-    default:
-        Console.WriteLine("Invalid Customer Type");
-        break;
-}
+new RegularCustomer(),
+new PremiumCustomer(),
+new Employee(),
+new DefaultCustomer()
+};
 
+string? Type = Console.ReadLine();
+string Amount = Type.ToLower() switch
+{
+    "regular" => $"Total amount to pay:{list[0].GetDiscount()}",
+    "premium" => $"Total amount to pay:{list[1].GetDiscount()}",
+    "employee" => $"Total amount to pay:{list[2].GetDiscount()}",
+    "walking" => $"Total amount to pay:{list[3].GetDiscount()}",
+    _ => "Invalid Customer Type ",
+};
+Console.WriteLine(Amount);
 //change this file
 
 
