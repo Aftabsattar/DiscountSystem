@@ -3,34 +3,74 @@ using premium;
 using employee;
 using Default;
 using DiscountSystem;
+List<Discount<double>> list = new List<Discount<double>>();
+Discount<double> discount=null;
 do
-{   Console.WriteLine("select The type of Customer");
+{
+    Console.WriteLine("select The type of Customer");
     Console.WriteLine(" Regular");
     Console.WriteLine(" Premium");
     Console.WriteLine(" Employee");
     Console.WriteLine(" Walking");
     string? Type = Console.ReadLine();
-    List<Discount<double>> list = new List<Discount<double>>()
+    switch (Type.ToLower())
     {
-        new RegularCustomer(),
-        new PremiumCustomer(),
-        new Employee(),
-        new DefaultCustomer()
-    };
-    string Amount = Type.ToLower() switch
+        case "regular":
+            {
+                discount = new RegularCustomer();
+                Console.WriteLine("Enter the purchase amount");
+                discount.purchaseAmount = Convert.ToDouble(Console.ReadLine());
+                break;
+            }
+        case "premium":
+            {
+                 discount = new PremiumCustomer();
+                Console.WriteLine("Enter the purchase amount");
+                discount.purchaseAmount = Convert.ToDouble(Console.ReadLine());
+                break;
+            }
+        case "employee":
+            {
+                discount = new Employee();
+                Console.WriteLine("Enter the purchase amount");
+                discount.purchaseAmount = Convert.ToDouble(Console.ReadLine());
+                break;
+            }
+        case "walking":
+            {
+                discount = new DefaultCustomer();
+                Console.WriteLine("Enter the purchase amount");
+                discount.purchaseAmount = Convert.ToDouble(Console.ReadLine());
+                break;
+            }
+        default:
+            {
+                Console.WriteLine("Invalid Customer type");
+                break;
+            }
+    }
+    // calculation
+    Console.WriteLine($"Total Amount: {discount.GetDiscount()}");
+    // add to list
+    if (discount != null)
     {
-        "regular" => $"Total amount to pay:{list[0].GetDiscount()}",
-        "premium" => $"Total amount to pay:{list[1].GetDiscount()}",
-        "employee" => $"Total amount to pay:{list[2].GetDiscount()}",
-        "walking" => $"Total amount to pay:{list[3].GetDiscount()}",
-        _ => "Invalid Customer Type ",
-    };
-    Console.WriteLine(Amount);
+        list.Add(discount);
+    }
+    // agian calculation 
     Console.WriteLine("Do you want to calculate again: (Y/N)");
     ConsoleKeyInfo Uchoice = Console.ReadKey();
     if (Uchoice.Key != ConsoleKey.Y)
     {
+        Console.WriteLine($"\n#\tType \t  Amount\t Disounted");
+        int a = 1;
+        foreach (var i in list)
+        {
+            Console.WriteLine($"{a++}, {i.GetType().Name}, {i.purchaseAmount}, {i.GetDiscount()}");
+        }
         break;
-    }
-    Console.WriteLine();
-} while (true);
+
+    }  
+} while (true) ;
+
+
+
